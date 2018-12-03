@@ -11,7 +11,7 @@ import Colors from '../../constants/Colors';
 export default class ProductList extends Component {
     render() {
         const listItems = this.props.items.map((item, idx) => {
-            return <ProductItem itemIcon={item} itemName={`Product #${idx + 1}`} key={idx} />
+            return <ProductItem icon={item.icon} name={item.name} key={idx} />
         });
 
         return (

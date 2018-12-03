@@ -11,9 +11,9 @@ export default class ProductItem extends Component {
         return (
             <TouchableOpacity style={Styles.flexContainer}>
                 <View style={[Styles.flexContainer, Styles.itemContainer]}>
-                    <Image source={this.props.itemIcon}></Image>
+                    <Image source={this.props.icon}></Image>
                     <View style={Styles.flexContainer}>
-                        <Text style={[Styles.itemText, Styles.itemName]}>{this.props.itemName}</Text>
+                        <Text style={[Styles.itemText, Styles.itemName]}>{this.props.name}</Text>
                     </View>
                     <Text style={Styles.itemText}>{'>'}</Text>
                 </View>
