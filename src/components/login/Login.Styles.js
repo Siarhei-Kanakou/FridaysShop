@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
+// 412x660
 export default StyleSheet.create({
     container: {
         flex: 1,
@@ -27,6 +28,7 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.LightGray,
         fontFamily: 'vincHand',
+        fontSize: 25,
         textAlign: 'center',
     },
 });

@@ -40,13 +40,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontFamily: "vincHand",
+    fontFamily: 'bearerFond',
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
   instructions: {
-    fontFamily: "vincHand",
+    fontFamily: 'bearerFond',
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
