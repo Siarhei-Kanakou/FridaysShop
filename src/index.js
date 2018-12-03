@@ -8,7 +8,9 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-//import CustomView from './components/product-list/ProductList.View';
+import Login from './components/login/Login.View';
+import ProductList from './components/product-list/ProductList.View';
+import ProductDetails from './components/product-details/ProductDetails.View';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -19,15 +21,29 @@ const instructions = Platform.select({
 
 type Props = {};
 
+const items = [
+    require('./assets/img/map.png'),
+    require('./assets/img/smiling-face.png'),
+    require('./assets/img/star.png'),
+    require('./assets/img/camera.png'),
+    require('./assets/img/gift.png'),
+    require('./assets/img/medic-sign.png'),
+    require('./assets/img/cart.png'),
+    require('./assets/img/rugby.png'),
+];
+
 export default class App extends Component<Props> {
   render() {
     return (
+      <ProductList items={items} />
+      //<ProductDetails />
+      /*
       <View style={styles.container}>
         <Text style={styles.welcome}>Hello, world!</Text>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      </View>*/
     );
   }
 }

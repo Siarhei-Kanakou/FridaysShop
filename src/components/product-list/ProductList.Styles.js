@@ -3,45 +3,38 @@ import Colors from '../../constants/Colors';
 
 // 412x660
 export default StyleSheet.create({
-    container: {
+    flexContainer: {
         flex: 1,
+    },
+    container: {
         flexDirection: 'column',
         alignItems: 'stretch',
-        paddingBottom: 200,
+        marginBottom: 200,
     },
     title: {
-        height: 120,
         borderBottomWidth: 2,
-        borderColor: Colors.Graphite,
-
+        borderColor: Colors.DarkGray,
         color: Colors.Graphite,
-        fontFamily: 'vincHand',
+        fontFamily: 'bearerFond',
         fontSize: 40,
         lineHeight: 120,
         textAlign: 'center',
     },
-    item: {
-        flex: 1,
+    itemContainer: {
         flexDirection: 'row',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        height: 50,
-        borderBottomWidth: 2,
-        borderColor: Colors.Graphite,
-    },
 
-    itemIcon: {
-        marginHorizontal: 10,
-    },
-    itemNameContainer: {
-        flex: 1,
-        backgroundColor: 'blue',
+        borderBottomWidth: 2,
+        paddingHorizontal: 10,
+        borderColor: Colors.DarkGray,
     },
     itemName: {
-        fontSize: 20,
-        fontFamily: 'vincHand',
-        color: Colors.Graphite,
+        paddingHorizontal: 15,
     },
-    itemButton: {
-        marginHorizontal: 10,
-    }
+    itemText: {
+        color: Colors.Graphite,
+        fontSize: 25,
+        fontFamily: 'bearerFond',
+    },
 });
