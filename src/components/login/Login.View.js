@@ -10,16 +10,17 @@ export default class Login extends Component {
     render() {
         return (
             <View style={Styles.container}>
-                <Image
-                    style={Styles.logo}
-                    source={require('../../assets/img/smiling-face.png')}
-                />
+                <View style={Styles.innerContainer}>
+                    <Image source={require('../../assets/img/smiling-face.png')} />
+                </View>
                 <Text style={Styles.title}>
                     Friday's Shop
                 </Text>
                 <TextInput style={Styles.input} textContentType="emailAddress" placeholder="email" />
                 <TextInput style={Styles.input} placeholder="Text box" />
-                <Button color={Colors.EpamBlue} title="Login" onPress={() => {}}/>
+                <View style={Styles.innerContainer}>
+                    <Button color={Colors.EpamBlue} title="Login" onPress={() => {}}/>
+                </View>
             </View>
         );
     }
