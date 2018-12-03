@@ -8,6 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+//import CustomView from './components/product-list/ProductList.View';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -39,11 +40,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
+    fontFamily: "vincHand",
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
   instructions: {
+    fontFamily: "vincHand",
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
