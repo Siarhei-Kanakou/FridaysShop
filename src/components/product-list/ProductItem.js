@@ -13,7 +13,7 @@ export default class ProductItem extends Component {
                 <View style={[Styles.flexContainer, Styles.itemContainer]}>
                     <Image source={this.props.icon}></Image>
                     <View style={Styles.flexContainer}>
-                        <Text style={[Styles.itemText, Styles.itemName]}>{this.props.name}</Text>
+                        <Text style={[Styles.itemText, Styles.itemName]} numberOfLines={1}>{this.props.name}</Text>
                     </View>
                     <Text style={Styles.itemText}>{'>'}</Text>
                 </View>
