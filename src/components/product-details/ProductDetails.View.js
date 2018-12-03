@@ -20,7 +20,7 @@ export default class ProductDetails extends Component {
                 </View>
                 <View style={[Styles.flexContainer, Styles.descriptionContainer]}>
                     <Text style={Styles.description}>{description}</Text>
-                    <Button color={Colors.EpamBlue} title='All products' />
+                    <Button color={Colors.EpamBlue} title='All products' onPress={this.props.onButtonPress}/>
                 </View>
             </View>
         );

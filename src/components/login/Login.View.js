@@ -19,7 +19,7 @@ export default class Login extends Component {
                 <TextInput style={Styles.input} textContentType="emailAddress" placeholder="email" />
                 <TextInput style={Styles.input} placeholder="Text box" />
                 <View style={Styles.innerContainer}>
-                    <Button color={Colors.EpamBlue} title="Login" onPress={() => {}}/>
+                    <Button color={Colors.EpamBlue} title="Login" onPress={this.props.onLoginPress}/>
                 </View>
             </View>
         );

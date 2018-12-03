@@ -9,7 +9,7 @@ import Colors from '../../constants/Colors';
 export default class ProductItem extends Component {
     render() {
         return (
-            <TouchableOpacity style={Styles.flexContainer}>
+            <TouchableOpacity style={Styles.flexContainer} onPress={this.props.onPress}>
                 <View style={[Styles.flexContainer, Styles.itemContainer]}>
                     <Image source={this.props.icon}></Image>
                     <View style={Styles.flexContainer}>
