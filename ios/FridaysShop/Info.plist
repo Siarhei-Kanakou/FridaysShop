@@ -55,8 +55,8 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>vincHand.ttf</string>
 		<string>bearerFond.ttf</string>
+		<string>vincHand.ttf</string>
 	</array>
 </dict>
 </plist>
