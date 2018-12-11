@@ -31,4 +31,9 @@ export default StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
     },
+    loginTitleContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    }
 });
