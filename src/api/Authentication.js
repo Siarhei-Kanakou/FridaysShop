@@ -7,10 +7,7 @@ export function authenticate(username, password) {
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            username: 'r3dblr@gmail.com',
-            password: 'Look4path'
-        }),
+        body: JSON.stringify({ username, password }),
     })
     .then(response => response.json())
     .then((response) => {
