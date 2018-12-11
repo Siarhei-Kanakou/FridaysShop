@@ -1,3 +1,5 @@
+'use strict';
+
 // react stuff
 import React, { Component } from 'react';
 import { Button, Image, TextInput, Text, TouchableOpacity, View } from 'react-native';

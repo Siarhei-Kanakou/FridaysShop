@@ -1,19 +1,20 @@
+'use strict';
+
 // react stuff
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 // components
 import ProductItem from './ProductItem';
+import Header from './ProductList.Header';
 // styles
 import Styles from './ProductList.Styles';
-// constants
-import Colors from '../../constants/Colors';
 // data
 import { getItems } from '../../DataSource';
 
 export default class ProductList extends React.Component {
-    static navigationOptions = () => ({
-        title: `Welcome!`
-    });
+    static navigationOptions = {
+        header: <Header />
+    }
 
     render() {
         const items = getItems();
@@ -30,7 +31,6 @@ export default class ProductList extends React.Component {
 
         return (
             <View style={[Styles.flexContainer, Styles.container]}>
-                <Text style={Styles.title}>Products</Text>
                 {listItems}
             </View>
         );
