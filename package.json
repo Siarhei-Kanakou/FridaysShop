@@ -7,6 +7,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "nskeymirror": "0.1.2",
     "react": "16.6.1",
     "react-native": "0.57.7",
     "react-navigation": "^3.0.7"

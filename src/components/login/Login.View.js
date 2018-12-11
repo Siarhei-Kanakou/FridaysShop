@@ -9,6 +9,7 @@ import Styles from './Login.Styles';
 import Header from './Login.Header';
 // constants
 import Colors from '../../constants/Colors';
+import RouteNames from '../../constants/RouteNames';
 // api
 import { authenticate } from '../../api/Authentication';
 
@@ -50,7 +51,7 @@ export default class Login extends React.Component {
                             const { username, password } = this.state;
 
                             return authenticate(username, password)
-                                .then(() => this.props.navigation.navigate('ProductList'))
+                                .then(() => this.props.navigation.navigate(RouteNames.ProductList))
                                 .catch(error => console.error(error.message));
                         }}
                     />
