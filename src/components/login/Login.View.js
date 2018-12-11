@@ -1,16 +1,18 @@
+'use strict';
+
 // react stuff
 import React from 'react';
 import { Button, TextInput, Text, View } from 'react-native';
 // styles
 import Styles from './Login.Styles';
 // components
-import LoginTitle from './LoginTitle';
+import Header from './Login.Header';
 // constants
 import Colors from '../../constants/Colors';
 
 export default class Login extends React.Component {
     static navigationOptions = {
-        headerTitle: <LoginTitle />
+        header: <Header />
     }
 
     render() {
@@ -20,7 +22,7 @@ export default class Login extends React.Component {
                     Friday's Shop
                 </Text>
                 <TextInput style={Styles.input} textContentType="emailAddress" placeholder="email" />
-                <TextInput style={Styles.input} placeholder="Text box" />
+                <TextInput style={Styles.input} placeholder="password" />
                 <View style={Styles.innerContainer}>
                     <Button
                         color={Colors.EpamBlue}
