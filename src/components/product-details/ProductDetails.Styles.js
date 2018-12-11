@@ -8,8 +8,8 @@ export default StyleSheet.create({
     container: {
         flexDirection: 'column',
         alignItems: 'stretch',
-        marginTop: 120,
-        marginBottom: 200,
+        marginTop: 50,
+        marginBottom: 150,
         borderWidth: 2,
         borderColor: Colors.DarkGray,
     },

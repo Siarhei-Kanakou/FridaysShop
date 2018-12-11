@@ -8,7 +8,7 @@ import Colors from '../../constants/Colors';
 
 export default class ProductDetails extends Component {
     render() {
-        const { icon, name, description } = this.props.item;
+        const { icon, name, description } = this.props.navigation.getParam('item', {});
 
         return (
             <View style={[Styles.flexContainer, Styles.container]}>
@@ -20,7 +20,11 @@ export default class ProductDetails extends Component {
                 </View>
                 <View style={[Styles.flexContainer, Styles.descriptionContainer]}>
                     <Text style={Styles.description}>{description}</Text>
-                    <Button color={Colors.EpamBlue} title='All products' onPress={this.props.onButtonPress}/>
+                    <Button
+                        color={Colors.EpamBlue}
+                        title='All products'
+                        onPress={() => this.props.navigation.goBack()}
+                    />
                 </View>
             </View>
         );
