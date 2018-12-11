@@ -9,7 +9,7 @@ import Header from './ProductList.Header';
 // styles
 import Styles from './ProductList.Styles';
 // data
-import { getItems } from '../../DataSource';
+import { getItems } from '../../api/DataSource';
 
 export default class ProductList extends React.Component {
     static navigationOptions = {

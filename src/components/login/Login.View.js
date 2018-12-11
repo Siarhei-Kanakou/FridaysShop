@@ -9,10 +9,20 @@ import Styles from './Login.Styles';
 import Header from './Login.Header';
 // constants
 import Colors from '../../constants/Colors';
+// api
+import { authenticate } from '../../api/Authentication';
 
 export default class Login extends React.Component {
     static navigationOptions = {
         header: <Header />
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+        };
     }
 
     render() {
@@ -21,13 +31,28 @@ export default class Login extends React.Component {
                 <Text style={Styles.title}>
                     Friday's Shop
                 </Text>
-                <TextInput style={Styles.input} textContentType="emailAddress" placeholder="email" />
-                <TextInput style={Styles.input} placeholder="password" />
+                <TextInput
+                    style={Styles.input}
+                    textContentType="emailAddress"
+                    placeholder="email"
+                    onChangeText={username => this.setState({ username })}
+                />
+                <TextInput
+                    style={Styles.input}
+                    placeholder="password"
+                    onChangeText={password => this.setState({ password })}
+                />
                 <View style={Styles.innerContainer}>
                     <Button
                         color={Colors.EpamBlue}
                         title="Login"
-                        onPress={() => this.props.navigation.navigate('ProductList')}
+                        onPress={() => {
+                            const { username, password } = this.state;
+
+                            return authenticate(username, password)
+                                .then(() => this.props.navigation.navigate('ProductList'))
+                                .catch(error => console.error(error.message));
+                        }}
                     />
                 </View>
             </View>
