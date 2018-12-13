@@ -1,29 +1,38 @@
+'use strict';
+
 // react stuff
-import React, { Component } from 'react';
-import { Button, Image, TextInput, Text, View } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 // components
 import ProductItem from './ProductItem';
+import Header from './ProductList.Header';
 // styles
 import Styles from './ProductList.Styles';
 // constants
-import Colors from '../../constants/Colors';
+import RouteNames from '../../constants/RouteNames';
+// data
+import { getItems } from '../../api/DataSource';
 
-export default class ProductList extends Component {
+export default class ProductList extends React.Component {
+    static navigationOptions = {
+        header: <Header />
+    }
+
     render() {
-        const listItems = this.props.items.map((item, idx) => {
+        const items = getItems();
+        const listItems = items.map((item, idx) => {
             return (
                 <ProductItem
                     key={idx}
                     icon={item.icon}
                     name={item.name}
-                    onPress={() => this.props.onItemPress(item)}
+                    onPress={() => this.props.navigation.navigate(RouteNames.ProductDetails, { item })}
                 />
             );
         });
 
         return (
             <View style={[Styles.flexContainer, Styles.container]}>
-                <Text style={Styles.title}>Products</Text>
                 {listItems}
             </View>
         );

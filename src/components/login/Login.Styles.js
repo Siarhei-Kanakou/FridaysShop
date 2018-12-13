@@ -1,3 +1,5 @@
+'use strict';
+
 import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
@@ -14,7 +16,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        marginTop: 30,
         marginBottom: 30,
         fontSize: 40,
         fontFamily: 'bearerFond',
@@ -31,4 +32,9 @@ export default StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
     },
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 20,
+    }
 });

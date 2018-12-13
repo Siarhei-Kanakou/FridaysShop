@@ -1,3 +1,5 @@
+'use strict';
+
 import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
@@ -5,23 +7,21 @@ export default StyleSheet.create({
     flexContainer: {
         flex: 1,
     },
-    container: {
-        flexDirection: 'column',
-        alignItems: 'stretch',
-        marginTop: 120,
-        marginBottom: 200,
-        borderWidth: 2,
-        borderColor: Colors.DarkGray,
-    },
     titleContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         padding: 15,
     },
     descriptionContainer: {
+        flexDirection: 'column',
         alignItems: 'flex-start',
+        borderTopWidth: 2,
+        borderBottomWidth: 2,
+        paddingTop: 15,
+        paddingBottom: 25,
         paddingLeft: 40,
         paddingRight: 60,
+        borderColor: Colors.DarkGray,
     },
     icon: {
         width: 40,

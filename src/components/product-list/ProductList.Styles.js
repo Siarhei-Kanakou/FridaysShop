@@ -1,7 +1,8 @@
+'use strict';
+
 import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
-// 412x660
 export default StyleSheet.create({
     flexContainer: {
         flex: 1,
