@@ -11,9 +11,9 @@ import Styles from './ProductList.Styles';
 // constants
 import RouteNames from '../../constants/RouteNames';
 // data
-import { fetchItems } from '../../api/DataSource';
+import { fetchItems, fetchItemsMock } from '../../api/DataSource';
 
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 15;
 
 export default class ProductList extends React.Component {
     static navigationOptions = {
@@ -24,12 +24,15 @@ export default class ProductList extends React.Component {
         super(props);
         this.state = {
             isRefreshing: false,
+            isScrolling: false,
             items: [],
+            totalCount: 0,
+            pageIdx: 0,
         };
     }
 
     componentDidMount() {
-       this.loadProducts().catch(e => console.error(e));
+       this.loadProducts(this.state.pageIdx).catch(e => console.error(e));
     }
 
     render() {
@@ -40,7 +43,12 @@ export default class ProductList extends React.Component {
                 <FlatList
                     data={items}
                     keyExtractor={item => `${item.id}`}
-                    renderItem={({ item }) => this.renderItem(item)}
+                    renderItem={({item}) => this.renderItem(item)}
+
+                    onMomentumScrollBegin={() => this.onScroll(true)}
+                    onMomentumScrollEnd={() => this.onScroll(false)}
+                    onEndReachedThreshold={0.01}
+                    onEndReached={() => this.onEndReached()}
                     onRefresh={() => this.reloadProducts()}
                     refreshing={isRefreshing}
                 />
@@ -58,11 +66,29 @@ export default class ProductList extends React.Component {
         );
     }
 
+    onEndReached() {
+        const { isScrolling, pageIdx, totalCount } = this.state;
+        const maxCount = (pageIdx - 1) * PAGE_SIZE;
+
+        if (isScrolling || maxCount >= totalCount) {
+            return;
+        }
+
+        this.loadProducts(pageIdx + 1).catch(e => console.error(e));
+    }
+
+    onScroll(isScrolling) {
+        this.setState({ isScrolling });
+    }
+
     loadProducts(pageIdx) {
-        return fetchItems({ pageSize: PAGE_SIZE })
-            .then((items) => {
+        console.log('loadProducts: ', pageIdx);
+        return fetchItems({ pageSize: PAGE_SIZE, pageIdx })
+            .then(({ items, totalCount }) => {
                 this.setState({
                     items: this.state.items.concat(items),
+                    pageIdx,
+                    totalCount,
                 });
             });
     }
@@ -73,7 +99,7 @@ export default class ProductList extends React.Component {
             items: [],
         });
 
-        this.loadProducts()
+        this.loadProducts(0)
             .then(() => this.setState({ isRefreshing: false }))
             .catch((e) => {
                 this.setState({
@@ -82,4 +108,6 @@ export default class ProductList extends React.Component {
                 })
             });
     }
+
+    
 };
