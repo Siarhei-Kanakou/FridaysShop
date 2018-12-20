@@ -10,7 +10,6 @@ export default StyleSheet.create({
     container: {
         flexDirection: 'column',
         alignItems: 'stretch',
-        marginBottom: 200,
     },
     title: {
         borderBottomWidth: 2,

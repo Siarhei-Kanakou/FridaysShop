@@ -14,5 +14,32 @@ const icons = [
 ];
 
 export function getItems() {
-    return icons.map((icon, idx) => ({ icon, name: `Product #${idx + 1}`, description }));
+    return icons.map((icon, idx) => ({ key:`${idx}`, icon, name: `Product #${idx + 1}`, description }));
+}
+
+export function fetchItems(options) {
+    const { pageSize } = options;
+
+    return fetch(`http://ecsc00a02fb3.epam.com/rest/V1/products?searchCriteria[pageSize]=${pageSize}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then((response) => {
+        if (response.message) {
+            return Promise.reject(response.message);
+        }
+
+        if (!response.items) {
+            return [];
+        }
+
+        return response.items.map((item) => {
+            const iconIdx = Math.floor(Math.random() * icons.length);
+            return Object.assign({ icon: icons[iconIdx], description }, item);
+        });
+    });
 }
