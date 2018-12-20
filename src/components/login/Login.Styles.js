@@ -36,5 +36,29 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         padding: 20,
-    }
+    },
+    modalContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingHorizontal: 50,
+        paddingVertical: 250,
+        backgroundColor: Colors.LightGrayOpaque,
+    },
+    modalInnerContainer: {
+        justifyContent: 'center',
+        borderRadius: 5,
+        borderWidth: 3,
+        padding: 20,
+
+        borderColor: Colors.DarkGray,
+        backgroundColor: Colors.LightGray,
+    },
+    modalMessage: {
+        paddingBottom: 20,
+        color: Colors.Graphite,
+        fontFamily: 'bearerFond',
+        fontSize: 20,
+        textAlign: 'center',
+    },
 });
