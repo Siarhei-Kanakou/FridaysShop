@@ -13,6 +13,49 @@ const icons = [
     require('../assets/img/rugby.png'),
 ];
 
-export function getItems() {
-    return icons.map((icon, idx) => ({ icon, name: `Product #${idx + 1}`, description }));
+function getIcon() {
+    const iconIdx = Math.floor(Math.random() * icons.length);
+    return icons[iconIdx];
+}
+
+export function fetchItemsMock(options) {
+    const { pageIdx, pageSize } = options;
+    const totalCount = 36;
+    const items = (new Array(totalCount)).fill(null).map((item, idx) => {
+        return {
+            id: idx,
+            icon: getIcon(),
+            name: `Product #${idx + 1}`,
+            description
+        };
+    });
+
+    return new Promise((resolve, reject) => {
+        const startIdx = pageIdx * pageSize;
+        const page = items.slice(startIdx, startIdx + pageSize);
+        resolve({ items: page, totalCount });
+    });
+}
+
+export function fetchItems(options) {
+    const { pageIdx, pageSize } = options;
+
+    return fetch(`http://ecsc00a02fb3.epam.com/rest/V1/products?searchCriteria[pageSize]=${pageSize}&searchCriteria[currentPage]=${pageIdx + 1}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => response.json())
+    .then((response) => {
+        if (response.message) {
+            return Promise.reject(response.message);
+        }
+
+        return {
+            items: response.items.map(item => Object.assign({ icon: getIcon(), description }, item)),
+            totalCount: response.total_count,
+        };
+    });
 }
