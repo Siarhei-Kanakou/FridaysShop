@@ -8,7 +8,8 @@ import {
     ModalView,
     TextInput,
     Text,
-    View
+    Vibration,
+    View,
 } from 'react-native';
 // styles
 import Styles from './Login.Styles';
@@ -96,6 +97,7 @@ export default class Login extends React.Component {
             .then(() => this.props.navigation.navigate(RouteNames.ProductList))
             .catch((error) => {
                 this.showErrorModal(error.message || error);
+                Vibration.vibrate(500);
                 return AsyncStorage.multiRemove(['username', 'password'])
             });
     }
