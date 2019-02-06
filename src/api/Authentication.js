@@ -1,7 +1,6 @@
 'use strict';
 
 export function authenticate(username, password) {
-    return Promise.resolve();
     return fetch('http://ecsc00a02fb3.epam.com/index.php/rest/V1/integration/customer/token', {
         method: "POST",
         mode: "cors",
