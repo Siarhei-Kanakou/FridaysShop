@@ -2,7 +2,14 @@
 
 // react stuff
 import React from 'react';
-import { Button, ModalView, TextInput, Text, View } from 'react-native';
+import {
+    AsyncStorage,
+    Button,
+    ModalView,
+    TextInput,
+    Text,
+    View
+} from 'react-native';
 // styles
 import Styles from './Login.Styles';
 // components
@@ -26,6 +33,19 @@ export default class Login extends React.Component {
             password: '',
             error: '',
         };
+    }
+
+    componentDidMount() {
+        AsyncStorage.multiGet(['username', 'password'])
+            .then(([usernameState, passwordState]) => {
+                const [ , username ] = usernameState;
+                const [ , password ] = passwordState;
+
+                if (username && password) {
+                    this.setState({ username, password })
+                    this.onLoginPress();
+                }
+            });
     }
 
     render() {
@@ -69,9 +89,14 @@ export default class Login extends React.Component {
         const { username, password } = this.state;
 
         return authenticate(username, password)
+            .then(() => AsyncStorage.multiSet([
+                ['username', username],
+                ['password', password],
+            ]))
             .then(() => this.props.navigation.navigate(RouteNames.ProductList))
             .catch((error) => {
                 this.showErrorModal(error.message || error);
+                return AsyncStorage.multiRemove(['username', 'password'])
             });
     }
 
