@@ -43,7 +43,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 50,
         paddingVertical: 250,
-        backgroundColor: Colors.LightGrayOpaque,
+        backgroundColor: Colors.DarkGrayOpaque,
     },
     modalInnerContainer: {
         justifyContent: 'center',
