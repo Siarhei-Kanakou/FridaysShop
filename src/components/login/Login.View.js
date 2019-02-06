@@ -3,9 +3,11 @@
 // react stuff
 import React from 'react';
 import {
+    Alert,
     AsyncStorage,
     Button,
     ModalView,
+    NetInfo,
     TextInput,
     Text,
     Vibration,
@@ -87,6 +89,16 @@ export default class Login extends React.Component {
     }
 
     onLoginPress() {
+        return NetInfo.isConnected.fetch()
+            .then((isConnected) => {
+                if (false) {
+                    return this.auth();
+                }
+                return this.showNoConnectionDialog();
+            })
+    }
+
+    auth() {
         const { username, password } = this.state;
 
         return authenticate(username, password)
@@ -104,5 +116,13 @@ export default class Login extends React.Component {
 
     showErrorModal(message = '') {
         this.setState({ error: message });
+    }
+
+    showNoConnectionDialog() {
+        Alert.alert(
+            'No connection',
+            'App requires connection to work. Please, turn on mobile internet or connect via Wi-Fi.',
+            [{ text: 'OK' }]
+        );
     }
 };
