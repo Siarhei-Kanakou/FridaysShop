@@ -4,6 +4,7 @@
 import React from 'react';
 import {
     Animated,
+    PanResponder,
     Text,
     TouchableOpacity,
     View
@@ -16,9 +17,9 @@ import Colors from '../../constants/Colors';
 export default class LoginError extends React.Component {
     constructor(props) {
         super(props);
-        this.animations = {
-            modal: new Animated.Value(0),
+        this.state = {
             button: new Animated.Value(0),
+            modal: new Animated.Value(0),
         };
     }
 
@@ -53,7 +54,7 @@ export default class LoginError extends React.Component {
     }
 
     animateButton() {
-        const { button: animationValue } = this.animations;
+        const { button: animationValue } = this.state;
         animationValue.setValue(0);
 
         return Animated.timing(animationValue, {
@@ -63,7 +64,7 @@ export default class LoginError extends React.Component {
     }
 
     animateModal() {
-        const { modal: animationValue } = this.animations;
+        const { modal: animationValue } = this.state;
 
 
         animationValue.setValue(0);
@@ -75,7 +76,7 @@ export default class LoginError extends React.Component {
     }
 
     getModalAnimationStyles() {
-        const { modal: animationValue } = this.animations;
+        const { modal: animationValue } = this.state;
         const rotationValue = animationValue.interpolate({
             inputRange: [0, 0.25, 0.5, 0.75, 1],
             outputRange: ['0deg', '180deg', '360deg', '540deg', '720deg'],
@@ -90,7 +91,7 @@ export default class LoginError extends React.Component {
     }
 
     getButtonAnimationStyles() {
-        const { button: animationValue } = this.animations;
+        const { button: animationValue } = this.state;
 
         return {
             opacity: animationValue,

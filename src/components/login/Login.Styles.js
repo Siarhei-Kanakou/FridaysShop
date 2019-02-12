@@ -40,7 +40,6 @@ export default StyleSheet.create({
     modalContainer: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'center',
         paddingHorizontal: 50,
         paddingVertical: 250,
         backgroundColor: Colors.DarkGrayOpaque,
