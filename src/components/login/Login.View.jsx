@@ -7,7 +7,7 @@ import {
     AsyncStorage,
     Button,
     LayoutAnimation,
-    ModalView,
+    Modal,
     NativeModules,
     NetInfo,
     TextInput,
@@ -61,14 +61,18 @@ export default class Login extends React.Component {
 
     render() {
         const { username, password, error } = this.state;
+        const modal = !!error && <LoginErrorModal message={error} onClosePress={() => this.showErrorModal()} />;
 
         return (
             <View style={Styles.container}>
-                <LoginErrorModal
-                    isVisible={!!error}
-                    message={error}
-                    onClosePress={() => this.showErrorModal()}
-                />
+                <Modal
+                    animationType='fade'
+                    transparent={true}
+                    visible={!!error}
+                    onRequestClose={() => {}}
+                >
+                    {modal}
+                </Modal>
                 <Text style={Styles.title}>
                     Friday's Shop
                 </Text>
@@ -99,7 +103,7 @@ export default class Login extends React.Component {
     onLoginPress() {
         return NetInfo.isConnected.fetch()
             .then((isConnected) => {
-                if (false) {
+                if (isConnected) {
                     return this.auth();
                 }
                 return this.showNoConnectionDialog();
