@@ -4,8 +4,8 @@
 import React from 'react';
 import {
     Animated,
-    Button,
     Text,
+    TouchableOpacity,
     View
 } from 'react-native';
 // styles
@@ -16,39 +16,84 @@ import Colors from '../../constants/Colors';
 export default class LoginError extends React.Component {
     constructor(props) {
         super(props);
-        this.springValue = new Animated.Value(0.3);
+        this.animations = {
+            modal: new Animated.Value(0),
+            button: new Animated.Value(0),
+        };
     }
 
     componentDidMount() {
-        this.springValue.setValue(0.3);
-
-        Animated.spring(this.springValue, {
-            toValue: 1,
-            friction: 1,
-        }).start();
+        this.animate();
     }
 
     render() {
         const { message, onClosePress } = this.props;
-        const containerAnimationStyles = {
-            transform: [
-                { scale: this.springValue }
-            ]
-        };
 
         return (
             <View style={Styles.modalContainer}>
-                <Animated.View style={[Styles.modalInnerContainer, containerAnimationStyles ]}>
+                <Animated.View style={[Styles.modalInnerContainer, this.getModalAnimationStyles()]}>
                     <Text style={Styles.modalMessage}>
                         {message}
                     </Text>
-                    <Button
-                        color={Colors.Coral}
-                        title="Close"
-                        onPress={() => onClosePress()}
-                    />
+                    <Animated.View style={[Styles.modalButtonContainer, this.getButtonAnimationStyles()]}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={() => onClosePress()}>
+                            <Text style={Styles.modalButtonText}>{'Close'}</Text>
+                        </TouchableOpacity>
+                    </Animated.View>
                 </Animated.View>
             </View>
         );
+    }
+
+    animate() {
+        Animated.sequence([
+            this.animateModal(),
+            this.animateButton(),
+        ]).start();
+    }
+
+    animateButton() {
+        const { button: animationValue } = this.animations;
+        animationValue.setValue(0);
+
+        return Animated.timing(animationValue, {
+            toValue: 1,
+            duration: 300,
+        });
+    }
+
+    animateModal() {
+        const { modal: animationValue } = this.animations;
+
+
+        animationValue.setValue(0);
+
+        return Animated.timing(animationValue, {
+            toValue: 1,
+            duration: 1000,
+        });
+    }
+
+    getModalAnimationStyles() {
+        const { modal: animationValue } = this.animations;
+        const rotationValue = animationValue.interpolate({
+            inputRange: [0, 0.25, 0.5, 0.75, 1],
+            outputRange: ['0deg', '180deg', '360deg', '540deg', '720deg'],
+        });
+
+        return {
+            transform: [
+                { scale: animationValue },
+                { rotate: rotationValue }
+            ],
+        };
+    }
+
+    getButtonAnimationStyles() {
+        const { button: animationValue } = this.animations;
+
+        return {
+            opacity: animationValue,
+        };
     }
 }

@@ -46,7 +46,6 @@ export default StyleSheet.create({
         backgroundColor: Colors.DarkGrayOpaque,
     },
     modalInnerContainer: {
-        justifyContent: 'center',
         borderRadius: 5,
         borderWidth: 3,
         padding: 20,
@@ -60,5 +59,21 @@ export default StyleSheet.create({
         fontFamily: 'bearerFond',
         fontSize: 20,
         textAlign: 'center',
+    },
+    modalButtonContainer: {
+        justifyContent: 'center',
+        paddingHorizontal: 75,
+    },
+    modalButton: {
+        borderRadius: 4,
+        borderWidth: 1,
+        paddingHorizontal: 10,
+        borderColor: Colors.DarkGray,
+    },
+    modalButtonText: {
+        color: Colors.Graphite,
+        fontFamily: 'bearerFond',
+        fontSize: 20,
+        textAlign: 'center'
     },
 });

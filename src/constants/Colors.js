@@ -13,6 +13,6 @@ export default {
     LightGray: '#CCCCCC',
     DarkGray: '#464547',
     // opaque
-    LightGrayOpaque: '#CCCCCC50',
-    DarkGrayOpaque: '#46454750',
+    LightGrayOpaque: '#CCCCCC90',
+    DarkGrayOpaque: '#46454790',
 };
