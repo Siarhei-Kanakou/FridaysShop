@@ -24,7 +24,7 @@ export default class AnimationView extends React.Component {
                 });
                 this.state.pan.setValue({ x: 0, y: 0 });
 
-                Animated.spring(this.state.scaleOnDrag, { toValue: 1.3, friction: 1 }).start();
+                Animated.spring(this.state.scaleOnDrag, { toValue: 1.3, friction: 3 }).start();
             },
             onPanResponderMove: Animated.event([
                 null,
@@ -32,14 +32,14 @@ export default class AnimationView extends React.Component {
             ]),
             onPanResponderRelease: (evt, gestureState) => {
                 this.state.pan.flattenOffset();
-                Animated.spring(this.state.scaleOnDrag, { toValue: 1, friction: 1 }).start();
+                Animated.spring(this.state.scaleOnDrag, { toValue: 1, friction: 3 }).start();
             },
         });
     }
 
     componentDidMount() {
         const { animations } = this.state;
-        //animations.forEach(this.animateNode);
+        animations.forEach(this.animateNode);
     }
 
     render() {
@@ -63,7 +63,7 @@ export default class AnimationView extends React.Component {
                             { translateX: pan.x },
                             { translateY: pan.y },
                         ]} ]}
-                        {...this._panResponder.handlers}
+                        {...this._panResponder.panHandlers}
                     >
                     </Animated.View>
                 </View>
