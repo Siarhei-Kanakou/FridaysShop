@@ -6,4 +6,5 @@ export default keyMirror({
     Login: null,
     ProductDetails: null,
     ProductList: null,
+    Animations: null,
 }, 'Routes');
