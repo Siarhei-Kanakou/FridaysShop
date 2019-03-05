@@ -134,6 +134,7 @@ android {
 }
 
 dependencies {
+    compile project(':friday-notifications')
     compile project(':react-native-splash-screen')
     compile project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
