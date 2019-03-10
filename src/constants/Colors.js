@@ -4,6 +4,7 @@ export default {
     LimeGreen: '#CEDB56',
     Graphite: '#222222',
     White: '#FFFFFF',
+    Black: '#000000',
     // secondary colors
     Coral: '#D35D47',
     BrightBlue: '#008ACE',
