@@ -2,7 +2,7 @@
 
 // react stuff
 import React from 'react';
-import { FlatList, View } from 'react-native';
+import { Button, FlatList, View } from 'react-native';
 // components
 import ProductItem from './ProductItem';
 import Header from './ProductList.Header';
@@ -16,9 +16,9 @@ import { fetchItems, fetchItemsMock } from '../../api/DataSource';
 const PAGE_SIZE = 15;
 
 export default class ProductList extends React.Component {
-    static navigationOptions = {
-        header: <Header />
-    }
+    static navigationOptions = ({ navigation }) => ({
+        header: <Header onCartClick={() => navigation.navigate(RouteNames.Cart)} />,
+    })
 
     constructor(props) {
         super(props);
@@ -83,7 +83,7 @@ export default class ProductList extends React.Component {
 
     loadProducts(pageIdx) {
         console.log('loadProducts: ', pageIdx);
-        return fetchItems({ pageSize: PAGE_SIZE, pageIdx })
+        return fetchItemsMock({ pageSize: PAGE_SIZE, pageIdx })
             .then(({ items, totalCount }) => {
                 this.setState({
                     items: this.state.items.concat(items),

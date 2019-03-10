@@ -91,7 +91,7 @@ export default class Login extends React.Component {
     onLoginPress() {
         return NetInfo.isConnected.fetch()
             .then((isConnected) => {
-                if (false) {
+                if (isConnected) {
                     return this.auth();
                 }
                 return this.showNoConnectionDialog();

@@ -14,7 +14,7 @@ export default StyleSheet.create({
     },
     descriptionContainer: {
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: 'stretch',
         borderTopWidth: 2,
         borderBottomWidth: 2,
         paddingTop: 15,
@@ -39,4 +39,8 @@ export default StyleSheet.create({
         fontSize: 12,
         fontFamily: 'bearerFond',
     },
+    actionContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    }
 });

@@ -1,8 +1,6 @@
-'use strict';
-
-// react stuff
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
+
 import Header from './ProductDetails.Header';
 // styles
 import Styles from './ProductDetails.Styles';
@@ -24,11 +22,18 @@ export default class ProductDetails extends Component {
         return (
             <View style={Styles.descriptionContainer}>
                 <Text style={Styles.description}>{description}</Text>
-                <Button
-                    color={Colors.EpamBlue}
-                    title='All products'
-                    onPress={() => this.props.navigation.goBack()}
-                />
+                <View style={Styles.actionContainer}>
+                    <Button
+                        color={Colors.EpamBlue}
+                        title='Add to cart'
+                        onPress={() => {}}
+                    />
+                    <Button
+                        color={Colors.EpamBlue}
+                        title='All products'
+                        onPress={() => this.props.navigation.goBack()}
+                    />
+                </View>
             </View>
         );
     }

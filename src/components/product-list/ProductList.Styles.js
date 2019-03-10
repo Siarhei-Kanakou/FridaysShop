@@ -11,15 +11,6 @@ export default StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'stretch',
     },
-    title: {
-        borderBottomWidth: 2,
-        borderColor: Colors.DarkGray,
-        color: Colors.Graphite,
-        fontFamily: 'bearerFond',
-        fontSize: 40,
-        lineHeight: 120,
-        textAlign: 'center',
-    },
     itemContainer: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -37,4 +28,30 @@ export default StyleSheet.create({
         fontSize: 25,
         fontFamily: 'bearerFond',
     },
+
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+
+        padding: 20,
+
+        borderBottomWidth: 2,
+        borderColor: Colors.DarkGray,
+    },
+    headerText: {
+        flex: 1,
+        borderColor: Colors.DarkGray,
+        color: Colors.Graphite,
+        fontFamily: 'bearerFond',
+        fontSize: 40,
+        lineHeight: 60,
+        textAlign: 'center',
+    },
+    cart: {
+        borderColor: Colors.DarkGray,
+        borderRadius: 6,
+        borderWidth: 2,
+        fontSize: 30,
+        paddingHorizontal: 10,
+    }
 });
