@@ -3,7 +3,9 @@ import {
     Alert,
     AsyncStorage,
     Button,
-    ModalView,
+    LayoutAnimation,
+    Modal,
+    NativeModules,
     NetInfo,
     TextInput,
     Text,
@@ -21,6 +23,10 @@ import RouteNames from '../../constants/RouteNames';
 // api
 import { authenticate } from '../../api/Authentication';
 
+const { UIManager } = NativeModules;
+UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+
+
 export default class Login extends React.Component {
     static navigationOptions = {
         header: <Header />
@@ -32,6 +38,8 @@ export default class Login extends React.Component {
             username: '',
             password: '',
             error: '',
+            buttonTitle: 'Login',
+            buttonColor: Colors.EpamBlue
         };
     }
 
@@ -50,14 +58,18 @@ export default class Login extends React.Component {
 
     render() {
         const { username, password, error } = this.state;
+        const modal = !!error && <LoginErrorModal message={error} onClosePress={() => this.showErrorModal()} />;
 
         return (
             <View style={Styles.container}>
-                <LoginErrorModal
-                    isVisible={!!error}
-                    message={error}
-                    onClosePress={() => this.showErrorModal()}
-                />
+                <Modal
+                    animationType='fade'
+                    transparent={true}
+                    visible={!!error}
+                    onRequestClose={() => {}}
+                >
+                    {modal}
+                </Modal>
                 <Text style={Styles.title}>
                     Friday's Shop
                 </Text>
@@ -76,8 +88,8 @@ export default class Login extends React.Component {
                 />
                 <View style={Styles.innerContainer}>
                     <Button
-                        color={Colors.EpamBlue}
-                        title="Login"
+                        color={this.state.buttonColor}
+                        title={this.state.buttonTitle}
                         onPress={() => this.onLoginPress()}
                     />
                 </View>
@@ -88,7 +100,7 @@ export default class Login extends React.Component {
     onLoginPress() {
         return NetInfo.isConnected.fetch()
             .then((isConnected) => {
-                if (false) {
+                if (isConnected) {
                     return this.auth();
                 }
                 return this.showNoConnectionDialog();
@@ -98,12 +110,27 @@ export default class Login extends React.Component {
     auth() {
         const { username, password } = this.state;
 
+        LayoutAnimation.configureNext(
+            LayoutAnimation.create(700, LayoutAnimation.Types.linear, LayoutAnimation.Properties.scaleXY)
+        );
+
+        this.setState({ buttonTitle: '...' });
+
         return authenticate(username, password)
             .then(() => AsyncStorage.multiSet([
                 ['username', username],
                 ['password', password],
             ]))
             .then(() => this.props.navigation.navigate(RouteNames.ProductList))
+            .catch((error) => {
+                this.setState({
+                    buttonTitle: 'Oops! Try again.',
+                    buttonColor: Colors.Error,
+                });
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => reject(error), 500);
+                });
+            })
             .catch((error) => {
                 this.showErrorModal(error.message || error);
                 Vibration.vibrate(500);
@@ -112,7 +139,11 @@ export default class Login extends React.Component {
     }
 
     showErrorModal(message = '') {
-        this.setState({ error: message });
+        this.setState({
+            error: message,
+            buttonTitle: message ? this.state.buttonTitle : 'Login',
+            buttonColor: message ? this.state.buttonColor : Colors.EpamBlue,
+        });
     }
 
     showNoConnectionDialog() {

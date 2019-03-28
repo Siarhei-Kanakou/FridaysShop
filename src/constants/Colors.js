@@ -4,6 +4,7 @@ export default {
     LimeGreen: '#CEDB56',
     Graphite: '#222222',
     White: '#FFFFFF',
+    Error: '#7F0000',
     // secondary colors
     Coral: '#D35D47',
     BrightBlue: '#008ACE',
@@ -12,5 +13,6 @@ export default {
     LightGray: '#CCCCCC',
     DarkGray: '#464547',
     // opaque
-    LightGrayOpaque: '#CCCCCC50',
+    LightGrayOpaque: '#CCCCCC90',
+    DarkGrayOpaque: '#46454790',
 };
