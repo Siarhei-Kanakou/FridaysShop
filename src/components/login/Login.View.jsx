@@ -1,6 +1,3 @@
-'use strict';
-
-// react stuff
 import React from 'react';
 import {
     Alert,

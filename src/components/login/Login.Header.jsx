@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { Image, View } from 'react-native';
 // styles

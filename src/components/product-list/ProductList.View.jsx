@@ -1,6 +1,3 @@
-'use strict';
-
-// react stuff
 import React from 'react';
 import { FlatList, View } from 'react-native';
 // components

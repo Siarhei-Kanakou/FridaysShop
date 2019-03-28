@@ -1,5 +1,3 @@
-'use strict';
-
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 // constants
 import RouteNames from '../constants/RouteNames';

@@ -1,6 +1,3 @@
-'use strict';
-
-// react stuff
 import React from 'react';
 import { Button, Modal, Text, View } from 'react-native';
 // styles
