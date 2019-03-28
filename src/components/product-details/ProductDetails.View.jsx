@@ -1,6 +1,3 @@
-'use strict';
-
-// react stuff
 import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 import Header from './ProductDetails.Header';

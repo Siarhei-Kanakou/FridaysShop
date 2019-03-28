@@ -1,5 +1,3 @@
-'use strict';
-
 import keyMirror from 'nskeymirror';
 
 export default keyMirror({
